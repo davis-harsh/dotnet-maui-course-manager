@@ -752,44 +752,20 @@ namespace Milestone
 
             if (existingStudents.Count == 0)
             {
-                var hash1 = SecurityHelper.HashPassword("ichibanINU<3", out var salt1);
-                var hash2 = SecurityHelper.HashPassword("dHarsh123", out var salt2);
-                var hash3 = SecurityHelper.HashPassword("test", out var salt3);
+                var hash1 = SecurityHelper.HashPassword("test", out var salt3);
 
                 var students = new List<Student>
         {
             new Student
             {
                 StudentId = 1,
-                Name = "Longmire Harsh",
-                Email = "longmire.harsh@gmail.com",
-                Phone = "509-101-2017",
-                CompletedCUs = 60,
-                Username = "longmire",
-                PasswordHash = hash1,
-                Salt = salt1
-            },
-            new Student
-            {
-                StudentId = 2,
-                Name = "Davis Harsh",
-                Email = "dharsh@wgu.edu",
-                Phone = "206-643-0703",
-                CompletedCUs = 112,
-                Username = "dharsh",
-                PasswordHash = hash2,
-                Salt = salt2
-            },
-            new Student
-            {
-                StudentId = 3,
                 Name = "Test Student",
                 Email = "test.student@wgu.edu",
-                Phone = "555-867-5309",
+                Phone = "555-555-5555",
                 CompletedCUs = 0,
                 Username = "test",
-                PasswordHash = hash3,
-                Salt = salt3
+                PasswordHash = hash1,
+                Salt = salt1
             },
         };
 
