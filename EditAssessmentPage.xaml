@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Milestone.EditAssessmentPage"
+             Title="EditAssessmentPage">
+    
+    <ScrollView>
+        <VerticalStackLayout Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ImageButton Source="wgulogo.png" MaximumHeightRequest="25" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Clicked="wgulogo_Clicked"/>
+                <ImageButton Source="homeicon.png" MaximumHeightRequest="25" Grid.Column="3" Grid.Row="0" Clicked="wgulogo_Clicked"/>
+                <ImageButton Source="termicon.png" MaximumHeightRequest="25" Grid.Column="4" Grid.Row="0" Clicked="termListPageButton_Clicked"/>
+                <ImageButton Source="coursesicon.png" MaximumHeightRequest="25" Grid.Column="5" Grid.Row="0" Clicked="courseListPageButton_Clicked"/>
+                <ImageButton Source="notificationsicon.png" MaximumHeightRequest="25" Grid.Column="6" Grid.Row="0" Clicked="notificationsSettingsButton_Clicked"/>
+            </Grid>
+
+            <Label 
+            Text="Edit Assessment:" FontSize="20" FontAttributes="Bold" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
+            
+            <Label Text="Name:" Margin="0,10,0,0" FontSize="16"/>
+            <Entry x:Name="assessmentNameEntryField" Placeholder="{Binding Name}" FontSize="16"/>
+            <Label Text="Start Date:" Margin="0,10,0,0" FontSize="16" />
+            <DatePicker x:Name="startDatePicker" Date="{Binding StartDate}" Format="MM/dd/yyyy" MinimumDate="2025/01/01" FontSize="16"/>
+            <Label Text="End Date:" Margin="0,10,0,0" FontSize="16" />
+            <DatePicker x:Name="endDatePicker" Date="{Binding EndDate}" Format="MM/dd/yyyy" MinimumDate="2025-01-01" FontSize="16"/>
+
+            <Button Text="Save" BackgroundColor="Navy" WidthRequest="175" Margin="0,10,0,0" Clicked="saveButton_Clicked"/>
+
+            <Button Text="Cancel" BorderWidth="1" WidthRequest="175" BorderColor="Navy" TextColor="Navy" BackgroundColor="White" Margin="0,10,0,0" Clicked="closePageButton_Clicked"/>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

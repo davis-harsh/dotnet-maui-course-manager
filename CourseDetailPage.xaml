@@ -1,0 +1,128 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Milestone.CourseDetailPage"
+             Title="Course Detail">
+    
+    <AbsoluteLayout>
+        <ScrollView x:Name="courseDetailScrollView"
+                    Scrolled="OnScrollViewScrolled" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Margin="10">
+            <VerticalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="wgulogo.png" MaximumHeightRequest="25" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Clicked="wgulogo_Clicked"/>
+                    <ImageButton Source="homeicon.png" MaximumHeightRequest="25" Grid.Column="3" Grid.Row="0" Clicked="wgulogo_Clicked"/>
+                    <ImageButton Source="termicon.png" MaximumHeightRequest="25" Grid.Column="4" Grid.Row="0" Clicked="termListPageButton_Clicked"/>
+                    <ImageButton Source="coursesicon.png" MaximumHeightRequest="25" Grid.Column="5" Grid.Row="0" Clicked="courseListPageButton_Clicked"/>
+                    <ImageButton Source="notificationsicon.png" MaximumHeightRequest="25" Grid.Column="6" Grid.Row="0" Clicked="notificationsSettingsButton_Clicked"/>
+                </Grid>
+
+                <Label Text="{Binding Name}" FontSize="24" FontAttributes="Bold" Margin="0,25,0,0" HorizontalTextAlignment="Center"/>
+
+                <Grid HorizontalOptions="Center" Padding="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Start Date:" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0"/>
+                    <Label Text="{Binding StartDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="16" FontAttributes="Bold" Margin="5,0,0,0" HorizontalOptions="Center" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="End Date:" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1"/>
+                    <Label Text="{Binding EndDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="16" FontAttributes="Bold" Margin="5,0,0,0" HorizontalOptions="Center" Grid.Column="1" Grid.Row="1"/>
+                </Grid>
+
+                <Label Text="Status:" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" HorizontalOptions="Center"/>
+                <Label Text="{Binding Status}" FontSize="16" HorizontalOptions="Center"/>
+
+                <Label Text="Instructor:" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" HorizontalOptions="Center"/>
+                <Label Text="{Binding Instructor}" FontSize="16" HorizontalOptions="Center"/>
+                <Label Text="{Binding Phone}" FontSize="16" HorizontalOptions="Center"/>
+                <Label Text="{Binding Email}" FontSize="16" Margin="0,0,0,10" HorizontalOptions="Center"/>
+
+                <Label Text="Description:" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" HorizontalOptions="Center"/>
+                <Label Text="{Binding Description}" FontSize="16" LineBreakMode="WordWrap" HorizontalOptions="Center" Margin="0,0,0,25"/>
+
+                <Button Text="Edit Course Detail" BackgroundColor="Navy" WidthRequest="175" Margin="0,0,5,10" Clicked="editCourseDetailPageButton_Clicked"/>
+
+                <Label Text="Notes:" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" HorizontalOptions="Center"/>
+
+                <VerticalStackLayout>
+                    <ListView x:Name="NotesListView" ItemTapped="notesListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <Entry x:Name="NotesEntry" Placeholder="Enter note..." />
+                    
+                    <HorizontalStackLayout HorizontalOptions="Center" Margin="0,5,0,0">
+                        <Button BackgroundColor="Navy" Text="Add Note" WidthRequest="175" Margin="0,0,5,0" Clicked="OnAddNote_Clicked" />
+                        <Button BorderWidth="1" BorderColor="Navy" TextColor="Navy" BackgroundColor="White" Text="Show Hidden Notes" WidthRequest="175" Margin="5,0,0,0" Clicked="OnShowAllNotes_Clicked" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Label Text="Assessments:" FontSize="16" FontAttributes="Bold" Margin="0,10,0,0" HorizontalTextAlignment="Center"/>
+                <CollectionView x:Name="assessmentsView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="5" BorderColor="Gray">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAssessmentTapped" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16"/>
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding Type}" FontSize="16" />
+                                        <Label Text=" Assessment" FontSize="16" />
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}" FontSize="16" />
+                                    <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="16" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Text="Add Assessment" BackgroundColor="Navy" WidthRequest="175" Margin="0,5,0,10" Clicked="addAssessmentButton_Clicked"/>
+
+                <Button Text="Delete Course" BackgroundColor="#c71c1c" WidthRequest="175" Clicked="deleteCourseButton_Clicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <ImageButton Source="topicon.png"
+        x:Name="scrollToTopButton"
+        Clicked="scrollToTopButton_Clicked"
+        BackgroundColor="Transparent"
+        WidthRequest="50"
+        HeightRequest="50"
+        CornerRadius="25"
+        IsVisible="False"
+        TranslationX="-10"
+        TranslationY="-10"
+        AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+        AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        
+    </AbsoluteLayout>
+</ContentPage>

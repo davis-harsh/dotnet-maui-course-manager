@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:Milestone"
+             x:Class="Milestone.CourseListPage"
+             Title="CourseListPage">
+
+    <AbsoluteLayout>
+        <ScrollView x:Name="coursesScrollView" 
+                    Scrolled="OnScrollViewScrolled" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ImageButton Source="wgulogo.png" MaximumHeightRequest="25" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Clicked="wgulogo_Clicked"/>
+                    <ImageButton Source="homeicon.png" MaximumHeightRequest="25" Grid.Column="3" Grid.Row="0" Clicked="wgulogo_Clicked"/>
+                    <ImageButton Source="termicon.png" MaximumHeightRequest="25" Grid.Column="4" Grid.Row="0" Clicked="termListPageButton_Clicked"/>
+                    <ImageButton Source="coursesicon.png" MaximumHeightRequest="25" Grid.Column="5" Grid.Row="0" Clicked="courseListPageButton_Clicked"/>
+                    <ImageButton Source="notificationsicon.png" MaximumHeightRequest="25" Grid.Column="6" Grid.Row="0" Clicked="notificationsSettingsButton_Clicked"/>
+                </Grid>
+
+                <Label Text="Select a Course:" FontSize="20" Margin="0,25,0,10" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+                <SearchBar x:Name="courseSearchBar" Placeholder="Search Courses" Margin="0,5,30,0" HorizontalOptions="Center" TextChanged="OnSearchBarTextChanged" />
+                <ListView x:Name="searchListView" HasUnevenRows="True" ItemsSource="{Binding}" ItemTapped="courseListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Summary}" FontSize="14"/>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <ListView x:Name="courseListView"
+          HasUnevenRows="True"
+          IsGroupingEnabled="True"
+          GroupDisplayBinding="{Binding TermName}"
+          ItemTapped="courseListView_ItemTapped">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <VerticalStackLayout Padding="10" BackgroundColor="#f0f0f0">
+                                    <Label Text="{Binding TermName}" FontAttributes="Bold" FontSize="18"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}" Grid.Column="0"/>
+                                        <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}" Grid.Column="2"/>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Summary}" FontSize="14"/>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button Text="Add Course" BackgroundColor="Navy" WidthRequest="175" Margin="0,15,0,0" Clicked="addCourseButton_Clicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <ImageButton Source="topicon.png"
+                x:Name="scrollToTopButton"
+                Clicked="scrollToTopButton_Clicked"
+                BackgroundColor="Transparent"
+                WidthRequest="50"
+                HeightRequest="50"
+                CornerRadius="25"
+                IsVisible="False"
+                TranslationX="-10"
+                TranslationY="-10"
+                AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+    </AbsoluteLayout>
+</ContentPage>

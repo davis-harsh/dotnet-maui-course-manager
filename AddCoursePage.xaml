@@ -1,0 +1,76 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:Milestone"
+             x:Class="Milestone.AddCoursePage"
+             Title="Add Course">
+    
+    <ScrollView>
+        <VerticalStackLayout Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ImageButton Source="wgulogo.png" MaximumHeightRequest="25" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Clicked="wgulogo_Clicked"/>
+                <ImageButton Source="homeicon.png" MaximumHeightRequest="25" Grid.Column="3" Grid.Row="0" Clicked="wgulogo_Clicked"/>
+                <ImageButton Source="termicon.png" MaximumHeightRequest="25" Grid.Column="4" Grid.Row="0" Clicked="termListPageButton_Clicked"/>
+                <ImageButton Source="coursesicon.png" MaximumHeightRequest="25" Grid.Column="5" Grid.Row="0" Clicked="courseListPageButton_Clicked"/>
+                <ImageButton Source="notificationsicon.png" MaximumHeightRequest="25" Grid.Column="6" Grid.Row="0" Clicked="notificationsSettingsButton_Clicked"/>
+            </Grid>
+
+            <Label Text="Add Course" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+            <Label Text="Course Name:" FontSize="16" />
+            <Entry x:Name="courseNameEntryField" Placeholder="Enter name" FontSize="16" />
+
+            <Label Text="Course Summary:" FontSize="16" />
+            <Entry x:Name="courseSummaryEntryField" Placeholder="Enter summary" FontSize="16" />
+
+            <Label Text="Description:" FontSize="16" />
+            <Editor x:Name="courseDescriptionEntryField" Placeholder="Enter description" FontSize="16" />
+
+            <Label Text="Instructor Name:" FontSize="16" />
+            <Entry x:Name="courseInstructorEntryField" Placeholder="Enter instructor name" FontSize="16" />
+
+            <Label Text="Phone Number:" FontSize="16" />
+            <Entry x:Name="coursePhoneEntryField" Placeholder="Enter instructor phone number" Keyboard="Telephone" FontSize="16" />
+
+            <Label Text="Email:" FontSize="16"/>
+            <Entry x:Name="courseEmailEntryField" Placeholder="Enter instructor email address" Keyboard="Email" FontSize="16" />
+
+            <Label Text="Start Date:" FontSize="16" />
+            <DatePicker x:Name="startDatePicker" MinimumDate="2025-01-01" FontSize="16" />
+
+            <Label Text="End Date:" FontSize="16" />
+            <DatePicker x:Name="endDatePicker" MinimumDate="2025-01-01" FontSize="16" />
+
+            <Label Text="Status:" FontSize="16" />
+            <Picker x:Name="statusPicker"
+        Title="Select Course Status"
+        FontSize="16"
+        ItemsSource="{x:Static local:CourseStatusValues.All}"
+        SelectedItem="{Binding Status, Mode=TwoWay}" />
+
+            <Label Text="Term ID:" FontSize="16" />
+            <Entry x:Name="termIdEntryField" Placeholder="Enter term identification number" Keyboard="Numeric" FontSize="16" />
+
+            <Label Text="Course CUs:" FontSize="16" />
+            <Entry x:Name="courseCUsEntryField" Placeholder="Enter Course CUs" Keyboard="Numeric" FontSize="16" />
+
+            <Button Text="Save Course" BackgroundColor="Navy" WidthRequest="175" Margin="0,10,0,0" Clicked="saveButton_Clicked" />
+            <Button Text="Cancel" BorderWidth="1" BorderColor="Navy" WidthRequest="175" TextColor="Navy" BackgroundColor="White" Margin="0,10,0,0" Clicked="cancelButton_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

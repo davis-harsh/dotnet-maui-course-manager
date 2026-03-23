@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Milestone.LoginPage"
+             Title="LoginPage">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20">
+            <Label Text="Milestone"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+            FontSize="48"
+            Margin="0,50,0,0"/>
+            <Label Text="Track your academic progress"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+            FontSize="16"
+            Margin="0,15,0,0"/>
+
+            <Label Text="Username:" Margin="0,75,0,0"/>
+            <Entry x:Name="usernameEntry" Placeholder="enter your username" Margin="0,0,0,25"/>
+            <Label Text="Password:"/>
+            <Entry x:Name="passwordEntry" Placeholder="enter your password" IsPassword="True" Margin="0,0,0,25"/>
+
+            <Button Text="Log In" BackgroundColor="Navy" WidthRequest="175" Margin="0,25,0,200" Clicked="LoginButton_Clicked"/>
+
+            <!-- Debug Nav -->
+            <Grid HorizontalOptions="Center" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+
+
+
+            <Label Text="Software Engineering Capstone — D424" VerticalOptions="End" HorizontalTextAlignment="Center" Margin="0,10,0,0" FontSize="12"/>
+            <Label Text="Developed by Davis Harsh, Student ID: 000693623" VerticalOptions="End" HorizontalTextAlignment="Center" Margin="0,10,0,0" FontSize="12"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
