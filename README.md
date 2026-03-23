@@ -12,6 +12,3 @@ An Android application built with .NET MAUI and C# supporting CRUD operations fo
 C#  
 .NET MAUI  
 SQLite  
-
-## 📘 Screenshots
-Coming soon!
